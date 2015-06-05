@@ -1,0 +1,312 @@
+[
+    {
+        "class": "com.nbapp.qunimei.test.DebuTest",
+        "testsuite": [
+            {
+                "name": "testStartPage",
+                "description": "O10-95＆131 测试向导页，滑动向导页并点击体验按钮进入首页",
+                "isrun": "false"
+            },
+            {
+                "name": "testInit",
+                "description": "初始化测试环境",
+                "isrun": "true"
+            },
+            {
+                "name": "testCheckSpdlAddBtnShow",
+                "description": "测试添加spdl'+'右上角是否显示１",
+                "isrun": "true"
+            },
+            {
+                "name": "testAddSpdlFromWebView",
+                "description": "点击spdl'+'号，点击第一个＋添加网页，检查首页spdl个数是否+1",
+                "isrun": "true"
+            },
+            {
+                "name": "testAddSpdlFromURL",
+                "description": "点击spdl'+'号进入sdf,在输入框内输入url添加spdl,检查首页spdl个数是否+1",
+                "isrun": "true"
+            },
+            {
+                "name": "testCheckSpdlShowAfterClick",
+                "description": "点击spdl'+'号进入sdf,添加一个spdl,检查该spdl右上角是否有'新'的字样",
+                "isrun": "true"
+            },
+            {
+                "name": "testdelSpdlFromWebView",
+                "description": "点击spdl'+'号进入sdf,点击第一个'√'删除spdl,检查首页spdl个数是否-1",
+                "isrun": "true"
+            },
+            {
+                "name": "testMoveSpdl",
+                "description": "移动第一个spdl到最后面的位置",
+                "isrun": "true"
+            },
+            {
+                "name": "testMoveToFolder",
+                "description": "合并２个spdl至一个文件夹，判断首页spdl个数是否-1",
+                "isrun": "true"
+            },
+            {
+                "name": "testMoveSpdlFromFolder",
+                "description": "将spdl从文件夹移出",
+                "isrun": "true"
+            },
+            {
+                "name": "testEditFolderName",
+                "description": "修改首页spdl文件夹的title",
+                "isrun": "true"
+            },
+            {
+                "name": "testDelSpdlFromFolder",
+                "description": "删除spdl文件夹中的spdl,判断spdl个数是否-1",
+                "isrun": "true"
+            },
+            {
+                "name": "testDelSpdl",
+                "description": "删除首页的一个spdl,判断spdl个数是否-1",
+                "isrun": "true"
+            },
+            {
+                "name": "testStarOfOminiBar",
+                "description": "访问一个网页，点击菜单栏添加书签，分别加入首页和书签，判断spdl和书签是否已添加（发送至桌面和离线阅读暂时未实现，接下来补充）",
+                "isrun": "true"
+            },
+            {
+                "name": "testOfflineRead",
+                "description": "保存网页并打开",
+                "isrun": "true"
+            },
+            {
+                "name": "testSendDesktop",
+                "description": "发送快捷方式到桌面",
+                "isrun": "true"
+            },
+            {
+                "name": "testTurboMode",
+                "description": "测试在省流模式下打开网页，左边的省流icon是否显示正确",
+                "isrun": "true"
+            },
+            {
+                "name": "testSettingsHelpAndAbout",
+                "description": "测试settings里面帮助系列是否显示正确",
+                "isrun": "true"
+            },
+            {
+                "name": "testStopLoading",
+                "description": "访问网页，测试加载过程中点击'x'号网页是否停止，测试刷新功能是否ok",
+                "isrun": "true"
+            },
+            {
+                "name": "testFindInPage",
+                "description": "访问看小说页面，查找'推荐'，验证是否可以查到，查找'qwrd11+2-23'，验证未查到",
+                "isrun": "true"
+            },
+            {
+                "name": "testHistory",
+                "description": "依次访问４个网页，验证历史记录是否显示正确",
+                "isrun": "true"
+            },
+            {
+                "name": "testTab",
+                "description": "新建一个tab,并且关掉tab,新建若干个tab,再关掉若干个tab,判断tab数是否正确",
+                "isrun": "true"
+            },
+            {
+                "name": "testPrivateTab",
+                "description": "在隐私模式下访问网页，查看历史页面是否有记录",
+                "isrun": "true"
+            },
+            {
+                "name": "testCheckUrlParameter",
+                "description": "访问新鲜事儿页面，地址栏应显示中文'新鲜事儿'",
+                "isrun": "true"
+            },
+            {
+                "name": "testCheckUA",
+                "description": "切换设置里面UA选项，检查对应UA是否正确",
+                "isrun": "true"
+            },
+            {
+                "name": "testSearchKeyOrder",
+                "description": "在url里依次搜索3个内容，点击suggestion list,验证搜索顺序是否正确",
+                "isrun": "true"
+            },
+            {
+                "name": "testSetCurrentSearchEng",
+                "description": "测试设置搜索引擎",
+                "isrun": "true"
+            },
+            {
+                "name": "testCheckSuggestionList",
+                "description": "检查搜索界面输入q是否有直达显示",
+                "isrun": "true"
+            },
+            {
+                "name": "testClickSuggestListArrow",
+                "description": "测试suggestion list推送关键字后面的箭头",
+                "isrun": "true"
+            },
+            {
+                "name": "testCheckHasSuggest",
+                "description": "测试非常见关键字qwret+123是否有推送",
+                "isrun": "true"
+            },
+            {
+                "name": "testChangeEngToSearch",
+                "description": "测试切换搜索引擎搜索是否正确",
+                "isrun": "true"
+            },
+            {
+                "name": "testClearSearchHistory",
+                "description": "测试清除search历史",
+                "isrun": "true"
+            },
+            {
+                "name": "testPriceCompare",
+                "description": "测试sharedpreference里比价的白名单和pcm server上所配置的是否一致",
+                "isrun": "true"
+            },
+            {
+                "name": "testPriceButton",
+                "description": "访问一个有比价按钮显示的url,点击比价按钮，检查价格/huihui etao是否显示正确",
+                "isrun": "true"
+            },
+            {
+                "name": "testAddFolder",
+                "description": "测试书签管理中新建文件夹",
+                "isrun": "true"
+            },
+            {
+                "name": "testEnterFolder",
+                "description": "测试书签管理中进入文件夹",
+                "isrun": "true"
+            },
+            {
+                "name": "testDelBookmarkOrFolder",
+                "description": "测试删除书签和文件",
+                "isrun": "true"
+            },
+            {
+                "name": "testClearBookmark",
+                "description": "测试清除书签记录",
+                "isrun": "true"
+            },
+            {
+                "name": "testSavePage",
+                "description": "离线保存网页，并对其进行增删改、后台打开等操作",
+                "isrun": "true"
+            },
+            {
+                "name": "testModifySavePagePath",
+                "description": "修改离线保存书签的路径并且添加新的离线网页",
+                "isrun": "true"
+            },
+            {
+                "name": "testOperateHistory",
+                "description": "测试历史记录页面，后台打开、添加到首页、添加到书签、删除",
+                "isrun": "true"
+            },
+            {
+                "name": "testOpenInNewTab",
+                "description": "测试ezine,美女写真频道,长按图片进行后台打开、保存、分享、新窗口打开等操作",
+                "isrun": "true"
+            },
+            {
+                "name": "testOperateBook",
+                "description": "操作书签,包括增删改、后台打开、发送到桌面等",
+                "isrun": "true"
+            },
+            {
+                "name": "testSaveBookmark",
+                "description": "保存网页到书签并且到书签管理中打开刚刚保存的书签",
+                "isrun": "true"
+            },
+            {
+                "name": "testDiscovery",
+                "description": "检查新鲜事儿中的子页面",
+                "isrun": "true"
+            },
+            {
+                "name": "testUserCenterOfStartPage",
+                "description": "点击首页的用户中心登陆，验证PING-4035",
+                "isrun": "true"
+            },
+            {
+                "name": "testOupengSync",
+                "description": "测试欧朋云同步",
+                "isrun": "true"
+            },
+            {
+                "name": "testBackPage",
+                "description": "访问多个网页后测试后退功能，不应该再重载页面",
+                "isrun": "true"
+            },
+            {
+                "name": "testTurboWIFI",
+                "description": "检查在wifi下开启turbo的ip地址是否正确",
+                "isrun": "false"
+            },
+            {
+                "name": "testSetFontSize",
+                "description": "测试设置里面设置字体大小",
+                "isrun": "true"
+            },
+            {
+                "name": "testLocalCityAndWeather",
+                "description": "验证左屏天气的本地城市",
+                "isrun": "true"
+            },
+            {
+                "name": "testLeftScreenNav",
+                "description": "O10-1664 检查热门站点／小说阅读／软件游戏／生活实用／精品购物是否显示，点击左屏上方top sites中任意一个，判断是否能正常打开",
+                "isrun": "false"
+            },
+            {
+                "name": "testLeftScreenMostVist",
+                "description": "测试左屏最常访问",
+                "isrun": "false"
+            },
+            {
+                "name": "testCommpressionTop10",
+                "description": "测试省流模式里面10个流量排行",
+                "isrun": "false"
+            },
+            {
+                "name": "testSetClearBrowData",
+                "description": "测试设置里面清除浏览器数据",
+                "isrun": "true"
+            },
+            {
+                "name": "testRotationLock",
+                "description": "测试设置里面旋转屏幕",
+                "isrun": "true"
+            },
+            {
+                "name": "testGlobalSearch",
+                "description": "测试全局搜索，仅正常android4.4以上",
+                "isrun": "false"
+            },
+            {
+                "name": "testRunOupeng",
+                "description": "欧朋调式专用",
+                "isrun": "false"
+            },
+            {
+                "name": "testDownLoad",
+                "description": "下载一个文件，暂停／续传，验证能否成功下完",
+                "isrun": "true"
+            }
+        ]
+    },
+    {
+        "class": "com.nbapp.qunimei.test.QunimeiTest",
+        "testsuite": [
+            {
+                "name": "testDebug",
+                "description": "调试专用",
+                "isrun": "true"
+            }
+        ]
+    }
+]
