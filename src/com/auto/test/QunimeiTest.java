@@ -1,4 +1,4 @@
-package com.nbapp.qunimei.test;
+package com.auto.test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
