@@ -1,8 +1,12 @@
 一个Android测试工程，包含一些自动化的扩展；例如，报告输出、权限操作、界面管理和case执行等！
 
-测试对象为[ActionBarCompat.zip](https://bitbucket.org/hao_shen/androidautotools/downloads/ActionBarCompat.zip)
+测试对象为[ActionBarCompat.zip]
+
+(https://bitbucket.org/hao_shen/androidautotools/downloads/ActionBarCompat.zip)
+![device-2015-07-17-234529.png](https://bitbucket.org/repo/nra7pB/images/2035407010-device-2015-07-17-234529.png)
 
 AndToolsTest：
+
 
 
 ## 配置： ##
