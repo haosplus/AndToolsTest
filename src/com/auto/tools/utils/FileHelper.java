@@ -15,6 +15,7 @@ import android.app.Instrumentation;
 import android.app.UiAutomation;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 
 @SuppressLint("NewApi")
 public class FileHelper {
@@ -42,7 +43,7 @@ public class FileHelper {
 	}
 	
 	/**
-	 * 截图，包括输入法和状态栏,  如果被测应用有android.permission.WRITE_EXTERNAL_STORAGE权限启API>18?
+	 * 截图，包括输入法和状态栏,  如果被测应用有android.permission.WRITE_EXTERNAL_STORAGE权限且API>=18
 	 * @param fileName
 	 * @param directory
 	 * @param quality
@@ -53,12 +54,12 @@ public class FileHelper {
 		UiAutomation uiAutomation = inst.getUiAutomation();
 		Bitmap bitmap = uiAutomation.takeScreenshot();
 		FileOutputStream fos = null;
-		File parentDirectory = new File(directory);
-		if(!parentDirectory.exists())
-			parentDirectory.mkdir();
-		File fileToSave = new File(directory, fileName);
+//		File parentDirectory = new File(directory);
+//		if(!parentDirectory.exists())
+//			parentDirectory.mkdir();
+//		File fileToSave = new File(directory, fileName);
 		try {
-			fos = new FileOutputStream(fileToSave);
+			fos = new FileOutputStream(directory+File.separator+fileName);
 			if(fileName.endsWith(".png")){
 				bitmap.compress(Bitmap.CompressFormat.PNG, quality, fos);
 			}else if(fileName.endsWith(".jpg")){
@@ -67,7 +68,7 @@ public class FileHelper {
 	     	fos.flush();
 		    fos.close();
 		} catch (Exception e) {
-			AutoToolsLog.d("Can't save the screenshot! Requires write permission (android.permission.WRITE_EXTERNAL_STORAGE) in AndroidManifest.xml of the application under test.");
+			AutoToolsLog.i("Can't save the screenshot! Requires write permission (android.permission.WRITE_EXTERNAL_STORAGE) in AndroidManifest.xml of the application under test.");
 			e.printStackTrace();
 		}
 	}

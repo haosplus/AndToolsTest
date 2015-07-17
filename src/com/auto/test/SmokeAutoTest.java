@@ -1,10 +1,15 @@
 package com.auto.test;
 
-import com.auto.tools.service.AndToolsRemoteExec;
-import com.robotium.solo.Solo;
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.os.Environment;
+import android.os.SystemClock;
 import android.test.ActivityInstrumentationTestCase2;
+import android.util.Log;
+
+import com.auto.tools.service.AndToolsRemoteExec;
+import com.auto.tools.utils.FileHelper;
+import com.robotium.solo.Solo;
 
 /**
  * @date 2015/4/13
@@ -18,6 +23,7 @@ public class SmokeAutoTest extends ActivityInstrumentationTestCase2 {
 	private Instrumentation inst;
 	private Activity activity;
 	private AndToolsRemoteExec andToolsRemoteExec;
+	public final static String TAG = "debug";
 	static {
 		try {
 			launcherActivityClass = Class
@@ -66,8 +72,9 @@ public class SmokeAutoTest extends ActivityInstrumentationTestCase2 {
 		solo.sleep(1000);
 		andToolsRemoteExec.takeScreenshot(solo.getCurrentActivity());
 
-		//		FileHelper.takeScreenshot(String.valueOf(SystemClock.uptimeMillis()), 
-		//				Environment.getExternalStorageDirectory().getAbsolutePath(), 1, inst);
+		Log.i(TAG, "takeScreenshot");
+		FileHelper.takeScreenshot(String.valueOf(SystemClock.uptimeMillis())+".png", 
+				Environment.getExternalStorageDirectory().getAbsolutePath(), 1, inst);
 
 //		Assert.fail("失败了");
 		solo.sleep(2000);

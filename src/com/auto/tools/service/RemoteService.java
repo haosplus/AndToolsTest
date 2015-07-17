@@ -19,6 +19,8 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.RemoteException;
 import android.os.SystemClock;
+import android.util.Log;
+
 import com.auto.tools.aidl.*;
 import com.auto.tools.utils.AutoToolsLog;
 import com.auto.tools.utils.AutoToolsConfig;
@@ -101,7 +103,6 @@ public class RemoteService extends Service {
 	        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 			if(bitmap == null)
 				return;
-			AutoToolsLog.d("bitmap: "+bitmap);
 			//先默认到sd卡根目录, 需要判断是否存在sd卡
 			FileOutputStream fos = null;
 			String fileName = SystemClock.uptimeMillis()+".png";

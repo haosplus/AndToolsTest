@@ -64,7 +64,7 @@ public class AndToolsInstrumentationTestRunner extends InstrumentationTestRunner
 	}
 	
 	/**
-	 * 将结果保存到xml文件中
+	 * 将结果保存到xml文件中,需要被测进程开启权限，修改成远程调用方式保存？
 	 * @param testResult
 	 */
 	private void saveResultToXMl(TestResult testResult){
@@ -76,15 +76,16 @@ public class AndToolsInstrumentationTestRunner extends InstrumentationTestRunner
 		}else {
 			reportFileFir = AutoToolsConfig.reportFileFir;
 		}
-		File reportFile = new File(reportFileFir);
+		File reportFile = new File(reportFileFir); 
 		if(!reportFile.exists())
 			reportFile.mkdirs();
 		
 		AutoToolsLog.i(reportFileFir);
 		File outFile = new File(reportFile, 
 				testResult.getClassname()+"."+testResult.getTestname()+".xml");
-		if(outFile.exists())
-			outFile.delete();
+		if(outFile.exists()){
+			outFile.delete();     
+		}
 		XmlSerializer xmlSerializer = Xml.newSerializer();
 		PrintWriter fileWriter;
 		try {
