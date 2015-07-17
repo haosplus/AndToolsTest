@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 Please send inquiries to powertutor@umich.edu
  */
 
-package com.oupeng.auto.tools;
+package com.auto.tools.utils;
 
 import java.io.BufferedReader;
 import java.io.File;

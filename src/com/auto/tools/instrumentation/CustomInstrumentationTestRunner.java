@@ -1,4 +1,4 @@
-package com.oupeng.auto.instrumentation;
+package com.auto.tools.instrumentation;
 
 
 import java.io.BufferedReader;
@@ -30,9 +30,10 @@ import android.test.AndroidTestRunner;
 import android.test.InstrumentationTestRunner;
 import android.util.Log;
 import android.util.Xml;
-import com.oupeng.auto.tools.FileHelper;
 
-public class OupengInstrumentationTestRunner extends InstrumentationTestRunner {
+import com.auto.tools.utils.FileHelper;
+
+public class CustomInstrumentationTestRunner extends InstrumentationTestRunner {
 
 	private static final String TESTSUITES = "testsuites";
 	private static final String TESTSUITE = "testsuite";
@@ -386,7 +387,7 @@ public class OupengInstrumentationTestRunner extends InstrumentationTestRunner {
 //	private File getJunitOutputFile(final Package p) {
 	private File getJunitOutputFile(final Package p, TestCaseInfo caseInfo) {
 
-		ArrayList<TestInfo> list = new ArrayList<OupengInstrumentationTestRunner.TestInfo>();
+		ArrayList<TestInfo> list = new ArrayList<CustomInstrumentationTestRunner.TestInfo>();
 		for(TestInfo ti : caseInfo.testMap.values()){
 			list.add(ti);
 		}

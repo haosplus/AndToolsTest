@@ -1,4 +1,4 @@
-package com.oupeng.auto.adapter;
+package com.auto.tools.adapter;
 
 import java.util.ArrayList;
 
@@ -7,14 +7,14 @@ import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nbapp.qunimei.test.R;
-import com.oupeng.auto.tools.TestCaseInfo;
+import com.auto.andtools.R;
+import com.auto.tools.utils.TestCaseInfo;
 
 public class SmokeCaseAdapter extends BaseAdapter{
 	private ArrayList<TestCaseInfo> list;

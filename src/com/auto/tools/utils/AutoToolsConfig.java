@@ -1,4 +1,4 @@
-package com.oupeng.auto.tools;
+package com.auto.tools.utils;
 
 import java.io.File;
 
@@ -10,7 +10,7 @@ import android.os.Environment;
  * @author haos
  *
  */
-public class OupengConfig {
+public class AutoToolsConfig {
 	/**
 	 * log status
 	 */

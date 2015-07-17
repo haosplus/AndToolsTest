@@ -1,30 +1,33 @@
-package com.oupeng.auto.ui;
+package com.auto.tools.ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import com.nbapp.qunimei.test.R;
-import com.oupeng.auto.adapter.ExpandAdapter;
-import com.oupeng.auto.service.ExecTestCaseService;
-import com.oupeng.auto.tools.FileHelper;
-import com.oupeng.auto.tools.TestCaseInfo;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.Toast;
+
+import com.auto.andtools.R;
+import com.auto.tools.adapter.ExpandAdapter;
+import com.auto.tools.service.ExecTestCaseService;
+import com.auto.tools.utils.FileHelper;
+import com.auto.tools.utils.TestCaseInfo;
 
 public class SmokeCaseActivity extends Activity implements OnChildClickListener{
 	private TestCaseInfo testCaseInfo;

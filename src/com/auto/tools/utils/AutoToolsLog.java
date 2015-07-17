@@ -1,4 +1,4 @@
-package com.oupeng.auto.tools;
+package com.auto.tools.utils;
 
 import android.util.Log;
 /**
@@ -6,10 +6,10 @@ import android.util.Log;
  * @author haos
  *
  */
-public class OupengAutoLog{
+public class AutoToolsLog{
 	
 	public static int d(String msg){
-		return Log.d(OupengConfig.logFliterTag, msg);
+		return Log.d(AutoToolsConfig.logFliterTag, msg);
 	}
 	
 	public static int d(String tag, String msg){
@@ -17,7 +17,7 @@ public class OupengAutoLog{
 	}
 	
 	public static int i(String msg){
-		return Log.i(OupengConfig.logFliterTag, msg);
+		return Log.i(AutoToolsConfig.logFliterTag, msg);
 	}
 	
 	public static int i(String tag, String msg){
@@ -25,7 +25,7 @@ public class OupengAutoLog{
 	}
 	
 	public static int e(String msg){
-		return Log.e(OupengConfig.logFliterTag, msg);
+		return Log.e(AutoToolsConfig.logFliterTag, msg);
 	}
 	
 	public static int e(String tag, String msg){

@@ -1,4 +1,4 @@
-package com.oupeng.auto.tools;
+package com.auto.tools.utils;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,12 +1,8 @@
-package com.oupeng.auto.service;
+package com.auto.tools.service;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-
-import com.nbapp.qunimei.test.R;
-import com.oupeng.auto.tools.FileHelper;
-import com.oupeng.auto.tools.OupengAutoLog;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
@@ -17,14 +13,24 @@ import android.content.Intent;
 import android.content.pm.InstrumentationInfo;
 import android.os.IBinder;
 
+import com.auto.andtools.R;
+import com.auto.tools.utils.FileHelper;
+import com.auto.tools.utils.AutoToolsLog;
+
 @SuppressLint("NewApi")
 public class ExecTestCaseService extends Service {
 	public static final String CASENAME = "casename";
 	public static final String CLASSNAME = "classname";
 	
+	@Override
+	public void onCreate() {
+		AutoToolsLog.i("onCreate");
+		super.onCreate();
+	}
 	
 	@Override
 	public int onStartCommand(final Intent intent, int flags, int startId) {
+		AutoToolsLog.i("onStartCommand");
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -38,7 +44,7 @@ public class ExecTestCaseService extends Service {
 				String cmd = "am instrument --user 0 -e class "+className+"#"
 						+ caseName
 						+ " -w "+getPackageName()+"/"+getInstrumentationInfo().name;   
-				OupengAutoLog.i(cmd);
+				AutoToolsLog.i(cmd);
 				try {
 					p = Runtime.getRuntime().exec(cmd);
 					inputStream = p.getInputStream();
@@ -57,7 +63,7 @@ public class ExecTestCaseService extends Service {
 					e.printStackTrace();
 				}
 				
-				OupengAutoLog.i(result);
+				AutoToolsLog.i(result);
 				
 				/*Intent broadcast = new Intent();
 				broadcast.putExtra("result", result);

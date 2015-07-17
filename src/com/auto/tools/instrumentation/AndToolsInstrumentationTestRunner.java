@@ -1,4 +1,4 @@
-package com.oupeng.auto.instrumentation;
+package com.auto.tools.instrumentation;
 
 
 import java.io.File;
@@ -12,10 +12,11 @@ import android.os.Environment;
 import android.os.SystemClock;
 import android.test.InstrumentationTestRunner;
 import android.util.Xml;
-import com.oupeng.auto.tools.OupengAutoLog;
-import com.oupeng.auto.tools.OupengConfig;
 
-public class AutoInstrumentationTestRunner extends InstrumentationTestRunner {
+import com.auto.tools.utils.AutoToolsLog;
+import com.auto.tools.utils.AutoToolsConfig;
+
+public class AndToolsInstrumentationTestRunner extends InstrumentationTestRunner {
 	
 	private Bundle arguments;
 	private int PASS = 1;
@@ -44,9 +45,9 @@ public class AutoInstrumentationTestRunner extends InstrumentationTestRunner {
 	@Override
 	public void sendStatus(int resultCode, Bundle results) {
 		boolean argLog = Boolean.parseBoolean(arguments.getString("log"));
-		OupengAutoLog.e("argLog: "+argLog);
+		AutoToolsLog.e("argLog: "+argLog);
 		if(!argLog){
-			OupengAutoLog.i("resultCode: "+resultCode);
+			AutoToolsLog.i("resultCode: "+resultCode);
 			switch (resultCode) {
 			case 1:  //Do nothing , init
 				startTime = SystemClock.uptimeMillis();
@@ -54,7 +55,7 @@ public class AutoInstrumentationTestRunner extends InstrumentationTestRunner {
 			default:
 				endTime = SystemClock.uptimeMillis();
 				testResult = getTestResult(resultCode, results);
-				OupengAutoLog.e(testResult.toString());
+				AutoToolsLog.e(testResult.toString());
 				saveResultToXMl(testResult);
 				break;
 			}
@@ -68,18 +69,18 @@ public class AutoInstrumentationTestRunner extends InstrumentationTestRunner {
 	 */
 	private void saveResultToXMl(TestResult testResult){
 		String reportFileFir;
-		if("".equals(OupengConfig.reportFileFir)){
+		if("".equals(AutoToolsConfig.reportFileFir)){
 			// 目前还美柚判断是否存在sd卡
 			reportFileFir = Environment.getExternalStorageDirectory().getAbsolutePath() + 
 					File.separator+"automation" + File.separator + getContext().getPackageName();
 		}else {
-			reportFileFir = OupengConfig.reportFileFir;
+			reportFileFir = AutoToolsConfig.reportFileFir;
 		}
 		File reportFile = new File(reportFileFir);
 		if(!reportFile.exists())
 			reportFile.mkdirs();
 		
-		OupengAutoLog.i(reportFileFir);
+		AutoToolsLog.i(reportFileFir);
 		File outFile = new File(reportFile, 
 				testResult.getClassname()+"."+testResult.getTestname()+".xml");
 		if(outFile.exists())

@@ -1,10 +1,9 @@
-package com.oupeng.auto.adapter;
+package com.auto.tools.adapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
-import com.nbapp.qunimei.test.R;
-import com.oupeng.auto.tools.TestCaseInfo;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -18,6 +17,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.auto.andtools.R;
+import com.auto.tools.utils.TestCaseInfo;
 
 
 public class ExpandAdapter extends BaseExpandableListAdapter {

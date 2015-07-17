@@ -1,4 +1,4 @@
-package com.oupeng.auto.tools;
+package com.auto.tools.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -67,7 +67,7 @@ public class FileHelper {
 	     	fos.flush();
 		    fos.close();
 		} catch (Exception e) {
-			OupengAutoLog.d("Can't save the screenshot! Requires write permission (android.permission.WRITE_EXTERNAL_STORAGE) in AndroidManifest.xml of the application under test.");
+			AutoToolsLog.d("Can't save the screenshot! Requires write permission (android.permission.WRITE_EXTERNAL_STORAGE) in AndroidManifest.xml of the application under test.");
 			e.printStackTrace();
 		}
 	}
@@ -86,7 +86,7 @@ public class FileHelper {
 			File[] files = file.listFiles();
 			for (File f : files) {
 				if (f.isFile() && f.getName().equals(fileName)) {
-					OupengAutoLog.d("fileName: " + f.getName()
+					AutoToolsLog.d("fileName: " + f.getName()
 							+ "  size: " + f.length());
 					return f;
 				}
@@ -109,7 +109,7 @@ public class FileHelper {
 			File[] files = file.listFiles();
 			for (File f : files) {
 				if (f.isFile())
-					OupengAutoLog.d("fileName: " + f.getName()
+					AutoToolsLog.d("fileName: " + f.getName()
 							+ "  size: " + f.length());
 				fileList.add(f);
 			}

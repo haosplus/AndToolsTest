@@ -1,4 +1,4 @@
-package com.oupeng.auto.tools;
+package com.auto.tools.utils;
 
 public class TestCaseInfo {
 	private String name;

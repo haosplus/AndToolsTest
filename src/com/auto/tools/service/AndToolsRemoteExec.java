@@ -1,4 +1,4 @@
-package com.oupeng.auto.service;
+package com.auto.tools.service;
 
 import java.io.ByteArrayOutputStream;
 
@@ -13,31 +13,28 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.SystemClock;
-import android.test.ActivityInstrumentationTestCase2;
-import android.test.ActivityTestCase;
-import android.util.Log;
 import android.view.View;
 
-import com.oupeng.auto.aidl.RemoteInterface;
-import com.oupeng.auto.tools.OupengAutoLog;
-import com.oupeng.auto.tools.OupengConfig;
+import com.auto.tools.aidl.RemoteInterface;
+import com.auto.tools.utils.AutoToolsLog;
+import com.auto.tools.utils.AutoToolsConfig;
 import com.robotium.solo.Condition;
 
-public class OupengRemoteExec {
+public class AndToolsRemoteExec {
 	private Instrumentation inst;
-//	private String serviceAction = "oupeng.auto.remoteService";
+	//	private String serviceAction = "oupeng.auto.remoteService";
 	private RemoteInterface remoteInterface;
 	private Intent intentService;
 	private RemoteServiceConnection remoteServiceConnection;
 
-	public OupengRemoteExec(Instrumentation inst){
+	public AndToolsRemoteExec(Instrumentation inst){
 		this.inst = inst;
 		intentService = new Intent();
-//		Intent service = new Intent(serviceAction); 
+		//		Intent service = new Intent(serviceAction); 
 	}
 
-	
-/*	*//**
+
+	/*	*//**
 	 * 获取远程服务intentService
 	 * @return
 	 *//*
@@ -46,14 +43,14 @@ public class OupengRemoteExec {
 	}
 
 
-	*//**
-	 * 设置远程服务，主要用于传值，{@link #getRemoteInterface() 之前调用}
-	 * @param intentService
-	 *//*
+	  *//**
+	  * 设置远程服务，主要用于传值，{@link #getRemoteInterface() 之前调用}
+	  * @param intentService
+	  *//*
 	public void setIntentService(Intent intentService) {
 		this.intentService = intentService;
 	}
-*/
+	   */
 
 
 	/**
@@ -61,46 +58,46 @@ public class OupengRemoteExec {
 	 * @return
 	 */
 	private RemoteInterface getRemoteInterface(){
-		OupengAutoLog.d("getRemoteInterface");
+		AutoToolsLog.d("==Obtain remote nterface==");
 		if(remoteInterface != null)
 			return remoteInterface;
-		
+
 		intentService.setClass(inst.getContext(), RemoteService.class);
 		remoteServiceConnection = new RemoteServiceConnection();
-		
+
 		inst.getContext().bindService(intentService, remoteServiceConnection, Context.BIND_AUTO_CREATE);
 		waitForCondition(new Condition() {
 			@Override
 			public boolean isSatisfied() {
-				OupengAutoLog.d("获取远程接口: "+remoteInterface);
+				AutoToolsLog.d("Obtain remoteInterface: "+remoteInterface);
 				return remoteInterface != null;
 			}
 		}, 20000);
 		return remoteInterface;
 	}
-	
+
 	class  RemoteServiceConnection implements ServiceConnection {
 		@Override
 		public void onServiceDisconnected(ComponentName name) {
-			OupengAutoLog.d("onServiceDisconnected");
+			AutoToolsLog.d("onServiceDisconnected");
 			remoteInterface = null;
 		}
 
 		@Override
 		public void onServiceConnected(ComponentName name, IBinder service) {
-			OupengAutoLog.d("onServiceConnected");
+			AutoToolsLog.d("onServiceConnected");
 			remoteInterface = RemoteInterface.Stub.asInterface(service);
 		}
 	}
-	
+
 	public void stopRemoteService(){
-		OupengAutoLog.d("stopRemoteService");
+		AutoToolsLog.d("stopRemoteService");
 		inst.getContext().unbindService(remoteServiceConnection);
 		remoteInterface = null;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Waits for a condition to be satisfied.
 	 * 
@@ -137,6 +134,8 @@ public class OupengRemoteExec {
 			getRemoteInterface().wakeScreen();
 		} catch (RemoteException e) {
 			e.printStackTrace();
+		}catch (NullPointerException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -171,9 +170,11 @@ public class OupengRemoteExec {
 			getRemoteInterface().unLockedScreen();
 		} catch (RemoteException e) {
 			e.printStackTrace();
+		}catch (NullPointerException e) {
+			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 获取网络状态
 	 */
@@ -184,7 +185,7 @@ public class OupengRemoteExec {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 截图操作，被测应用不存在<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />调用此远程截图方法
 	 * @param activity
@@ -198,14 +199,14 @@ public class OupengRemoteExec {
 		Bundle b = new Bundle();
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] bytes = stream.toByteArray(); 
-        b.putByteArray(OupengConfig.REMOTE_SCREEN_BITMAP_BYTES, bytes);
-        intentService.putExtras(b);
+		byte[] bytes = stream.toByteArray(); 
+		b.putByteArray(AutoToolsConfig.REMOTE_SCREEN_BITMAP_BYTES, bytes);
+		intentService.putExtras(b);
 		try {
 			getRemoteInterface().takeScreenshot();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

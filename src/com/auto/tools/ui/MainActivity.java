@@ -1,6 +1,7 @@
-package com.oupeng.auto.ui;
+package com.auto.tools.ui;
 
-import com.oupeng.auto.tools.OupengConfig;
+import com.auto.tools.utils.AutoToolsConfig;
+
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,7 +34,7 @@ public class MainActivity extends TabActivity {
 				event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
 			if ((System.currentTimeMillis() - exitTime) > 2000) {
 				Toast.makeText(this,
-						OupengConfig.string.exit_prompt, Toast.LENGTH_SHORT).show();
+						AutoToolsConfig.string.exit_prompt, Toast.LENGTH_SHORT).show();
 				exitTime = System.currentTimeMillis();
 			} else {
 				finish();

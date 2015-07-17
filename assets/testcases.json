@@ -300,7 +300,7 @@
         ]
     },
     {
-        "class": "com.nbapp.qunimei.test.QunimeiTest",
+        "class": "com.auto.test.SmokeAutoTest",
         "testsuite": [
             {
                 "name": "testDebug",

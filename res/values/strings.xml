@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">QunimeiAutoTest</string>
+    <string name="app_name">AndToolsTest</string>
     <string name="exit_prompt">再按一次，退出程序</string>
     <string name="testcase_assets_name">testcases.json</string>
 

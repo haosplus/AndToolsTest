@@ -1,4 +1,4 @@
-package com.oupeng.auto.service;
+package com.auto.tools.service;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,7 +7,6 @@ import android.app.KeyguardManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
@@ -20,11 +19,9 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.RemoteException;
 import android.os.SystemClock;
-import android.util.Log;
-
-import com.oupeng.auto.aidl.RemoteInterface;
-import com.oupeng.auto.tools.OupengAutoLog;
-import com.oupeng.auto.tools.OupengConfig;
+import com.auto.tools.aidl.*;
+import com.auto.tools.utils.AutoToolsLog;
+import com.auto.tools.utils.AutoToolsConfig;
 
 /**
  * 通过AIDL操作，解决被测程序不具备的权限操作问题，需要在测试工程的AndroidManiFestx.ml中添加相应的权限
@@ -35,7 +32,7 @@ public class RemoteService extends Service {
 	private Intent intent;
 	@Override
 	public IBinder onBind(Intent intent) {
-		OupengAutoLog.d("onBind: "+this.getApplicationContext());
+		AutoToolsLog.d("onBind: "+this.getApplicationContext());
 		this.intent = intent;
 		return new RemoteBinder(this);
 	}
@@ -43,7 +40,7 @@ public class RemoteService extends Service {
 	
 	@Override
 	public void onDestroy() {
-		OupengAutoLog.d("onDestroy");
+		AutoToolsLog.d("onDestroy");
 		super.onDestroy();
 	}
 	
@@ -80,18 +77,18 @@ public class RemoteService extends Service {
 
 		@Override
 		public void lockedScreen() throws RemoteException {
-			OupengAutoLog.d("远程调用lockedScreen()");
+			AutoToolsLog.d("远程调用lockedScreen()");
 		}
 
 		@Override
 		public void unLockedScreen() throws RemoteException {
-			OupengAutoLog.d("远程调用解锁");
+			AutoToolsLog.d("远程调用解锁");
 			mKeyGuardManager.newKeyguardLock("").disableKeyguard();
 		}
 
 		@Override
 		public String getNetworkInfo() throws RemoteException {
-			OupengAutoLog.d("获取网络状态");
+			AutoToolsLog.d("获取网络状态");
 			if(networkInfo == null)
 				return "NOTCONNECTED";
 			return networkInfo.getTypeName();
@@ -100,11 +97,11 @@ public class RemoteService extends Service {
 		@Override
 		public void takeScreenshot() throws RemoteException {
 			Bundle bundle = intent.getExtras();
-			byte[] bytes = bundle.getByteArray(OupengConfig.REMOTE_SCREEN_BITMAP_BYTES);
+			byte[] bytes = bundle.getByteArray(AutoToolsConfig.REMOTE_SCREEN_BITMAP_BYTES);
 	        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 			if(bitmap == null)
 				return;
-			OupengAutoLog.d("bitmap: "+bitmap);
+			AutoToolsLog.d("bitmap: "+bitmap);
 			//先默认到sd卡根目录, 需要判断是否存在sd卡
 			FileOutputStream fos = null;
 			String fileName = SystemClock.uptimeMillis()+".png";

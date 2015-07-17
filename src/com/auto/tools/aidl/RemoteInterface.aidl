@@ -1,4 +1,4 @@
-package com.oupeng.auto.aidl;
+package com.auto.tools.aidl;
 
 interface RemoteInterface{
 	void wakeScreen();

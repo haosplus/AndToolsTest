@@ -1,4 +1,4 @@
-package com.oupeng.auto.tools;
+package com.auto.tools.utils;
 
 
 import java.lang.reflect.Constructor;
@@ -10,7 +10,7 @@ import android.util.Log;
 
 
 public class ReflectUtils {
-    private static final String TAG = OupengConfig.logFliterTag;
+    private static final String TAG = AutoToolsConfig.logFliterTag;
 
     /**
      * Instantiate an object of specified class.
@@ -47,27 +47,27 @@ public class ReflectUtils {
                 ret = c.newInstance(params);
             }
         } catch (ClassNotFoundException e) {
-            if (OupengConfig.DEBUG) {
+            if (AutoToolsConfig.DEBUG) {
                 Log.d(TAG, "ClassNotFoundException: " + "className: " + className);
             }
         } catch (NoSuchMethodException e) {
-            if (OupengConfig.DEBUG) {
+            if (AutoToolsConfig.DEBUG) {
                 Log.d(TAG, "NoSuchMethodException: " + "className: " + className);
             }
         } catch (IllegalArgumentException e) {
-            if (OupengConfig.DEBUG) {
+            if (AutoToolsConfig.DEBUG) {
                 Log.d(TAG, "IllegalArgumentException: " + "className: " + className);
             }
         } catch (InstantiationException e) {
-            if (OupengConfig.DEBUG) {
+            if (AutoToolsConfig.DEBUG) {
                 Log.d(TAG, "InstantiationException: " + "className: " + className);
             }
         } catch (IllegalAccessException e) {
-            if (OupengConfig.DEBUG) {
+            if (AutoToolsConfig.DEBUG) {
                 Log.d(TAG, "IllegalAccessException: " + "className: " + className);
             }
         } catch (InvocationTargetException e) {
-            if (OupengConfig.DEBUG) {
+            if (AutoToolsConfig.DEBUG) {
                 Log.d(TAG, "InvocationTargetException: " + "className: " + className);
             }
         }
@@ -96,7 +96,7 @@ public class ReflectUtils {
         try {
             classObject = Class.forName(className);
         } catch (ClassNotFoundException e) {
-            if (OupengConfig.DEBUG) {
+            if (AutoToolsConfig.DEBUG) {
                 Log.d(TAG, "ClassNotFoundException: " + "className: " + className);
             }
         }
@@ -121,7 +121,7 @@ public class ReflectUtils {
         try {
             classObject = Class.forName(className);
         } catch (ClassNotFoundException e) {
-            if (OupengConfig.DEBUG) {
+            if (AutoToolsConfig.DEBUG) {
                 Log.d(TAG, "ClassNotFoundException: " + "className: " + className);
             }
         }
@@ -168,23 +168,23 @@ public class ReflectUtils {
                 return object instanceof Class ? (T) method.invoke(null, params) : (T) method
                         .invoke(object, params);
             } catch (IllegalAccessException iae) {
-                if (OupengConfig.DEBUG) {
+                if (AutoToolsConfig.DEBUG) {
                     Log.d(TAG, "IllegalAccessException: " + "invokeMethod " + methodName);
                 }
             } catch (IllegalArgumentException iage) {
-                if (OupengConfig.DEBUG) {
+                if (AutoToolsConfig.DEBUG) {
                     Log.d(TAG, "IllegalArgumentException: " + "invokeMethod " + methodName);
                 }
             } catch (InvocationTargetException ite) {
-                if (OupengConfig.DEBUG) {
+                if (AutoToolsConfig.DEBUG) {
                     Log.d(TAG, "InvocationTargetException: " + "invokeMethod " + methodName);
                 }
             } catch (ExceptionInInitializerError eiie) {
-                if (OupengConfig.DEBUG) {
+                if (AutoToolsConfig.DEBUG) {
                     Log.d(TAG, "ExceptionInInitializerError: " + "invokeMethod " + methodName);
                 }
             } catch (ClassCastException cce) {
-                if (OupengConfig.DEBUG) {
+                if (AutoToolsConfig.DEBUG) {
                     Log.d(TAG, "ClassCastException: " + "invokeMethod " + methodName);
                 }
                 assert false;
@@ -216,19 +216,19 @@ public class ReflectUtils {
             try {
                 return (T) field.get(object);
             } catch (IllegalAccessException iae) {
-                if (OupengConfig.DEBUG) {
+                if (AutoToolsConfig.DEBUG) {
                     Log.d(TAG, "IllegalAccessException: " + "getFieldValue " + fieldName);
                 }
             } catch (IllegalArgumentException iae) {
-                if (OupengConfig.DEBUG) {
+                if (AutoToolsConfig.DEBUG) {
                     Log.d(TAG, "IllegalArgumentException: " + "getFieldValue " + fieldName);
                 }
             } catch (ExceptionInInitializerError eiie) {
-                if (OupengConfig.DEBUG) {
+                if (AutoToolsConfig.DEBUG) {
                     Log.d(TAG, "ExceptionInInitializerError: " + "getFieldValue " + fieldName);
                 }
             } catch (ClassCastException cce) {
-                if (OupengConfig.DEBUG) {
+                if (AutoToolsConfig.DEBUG) {
                     Log.d(TAG, "ClassCastException: " + "getFieldValue " + fieldName);
                 }
                 assert false;
@@ -274,11 +274,11 @@ public class ReflectUtils {
                 field.set(object, value);
                 return true;
             } catch (IllegalAccessException iae) {
-                if (OupengConfig.DEBUG) {
+                if (AutoToolsConfig.DEBUG) {
                     Log.d(TAG, "IllegalAccessException: " + "setFieldValue " + fieldName);
                 }
             } catch (ExceptionInInitializerError eiie) {
-                if (OupengConfig.DEBUG) {
+                if (AutoToolsConfig.DEBUG) {
                     Log.d(TAG, "ExceptionInInitializerError: " + "setFieldValue " + fieldName);
                 }
             }
@@ -305,11 +305,11 @@ public class ReflectUtils {
                 field = theClass.getDeclaredField(fieldName);
                 return field;
             } catch (NoSuchFieldException e) {
-                if (OupengConfig.DEBUG) {
+                if (AutoToolsConfig.DEBUG) {
                     Log.d(TAG, "NoSuchFieldException: " + theClass.getName() + "." + fieldName);
                 }
             } catch (SecurityException e) {
-                if (OupengConfig.DEBUG) {
+                if (AutoToolsConfig.DEBUG) {
                     Log.d(TAG, "SecurityException: " + theClass.getName() + "." + fieldName);
                 }
             }
@@ -337,11 +337,11 @@ public class ReflectUtils {
                 method = theClass.getDeclaredMethod(methodName, paramTypes);
                 return method;
             } catch (NoSuchMethodException e) {
-                if (OupengConfig.DEBUG) {
+                if (AutoToolsConfig.DEBUG) {
                     Log.d(TAG, "NoSuchMethodException: " + theClass.getName() + "." + methodName);
                 }
             } catch (SecurityException e) {
-                if (OupengConfig.DEBUG) {
+                if (AutoToolsConfig.DEBUG) {
                     Log.d(TAG, "SecurityException: " + theClass.getName() + "." + methodName);
                 }
             }

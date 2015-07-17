@@ -1,16 +1,17 @@
-package com.oupeng.auto.ui;
+package com.auto.tools.ui;
 
 
 import java.util.List;
 
-import com.nbapp.qunimei.test.R;
-import com.oupeng.auto.tools.SystemInfo;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.auto.andtools.R;
+import com.auto.tools.utils.SystemInfo;
 
 public class UtilsActivity extends Activity {
 	private String TAG = "UtilsActivity";

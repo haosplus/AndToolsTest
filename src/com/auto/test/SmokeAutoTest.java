@@ -1,43 +1,23 @@
 package com.auto.test;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-
-import junit.framework.Assert;
-
-import com.oupeng.auto.service.OupengRemoteExec;
-import com.oupeng.auto.tools.FileHelper;
-import com.oupeng.auto.tools.OupengAutoLog;
-import com.oupeng.auto.tools.OupengConfig;
+import com.auto.tools.service.AndToolsRemoteExec;
 import com.robotium.solo.Solo;
-
 import android.app.Activity;
 import android.app.Instrumentation;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Bitmap.CompressFormat;
-import android.os.Bundle;
-import android.os.Environment;
-import android.os.SystemClock;
 import android.test.ActivityInstrumentationTestCase2;
-import android.util.Log;
-import android.view.View;
-import android.view.WindowManager;
 
 /**
  * @date 2015/4/13
  * @author haos
  *
  */
-public class QunimeiTest extends ActivityInstrumentationTestCase2 {
-	private static final String LAUNCHER_ACTIVITY_FULL_CLASSNAME = "com.nbapp.qunimei.StartActivity";
+public class SmokeAutoTest extends ActivityInstrumentationTestCase2 {
+	private static final String LAUNCHER_ACTIVITY_FULL_CLASSNAME = "com.example.android.actionbarcompat.MainActivity";
 	private static Class<?> launcherActivityClass;
 	private Solo solo;
 	private Instrumentation inst;
 	private Activity activity;
-	private OupengRemoteExec oupengRemoteExec;
+	private AndToolsRemoteExec andToolsRemoteExec;
 	static {
 		try {
 			launcherActivityClass = Class
@@ -47,7 +27,7 @@ public class QunimeiTest extends ActivityInstrumentationTestCase2 {
 		}
 	}
 
-	public QunimeiTest(){
+	public SmokeAutoTest(){
 		super(launcherActivityClass);
 	}
 
@@ -57,7 +37,7 @@ public class QunimeiTest extends ActivityInstrumentationTestCase2 {
 		activity = getActivity();
 		solo = new Solo(inst, activity);
 		solo.sleep(2000);
-		oupengRemoteExec = new OupengRemoteExec(inst);
+		andToolsRemoteExec = new AndToolsRemoteExec(inst);
 		super.setUp();
 	}
 
@@ -79,16 +59,17 @@ public class QunimeiTest extends ActivityInstrumentationTestCase2 {
 	 *@date 2015/4/13
 	 */
 	public void testDebug(){
-		oupengRemoteExec.wakeScreen();
-		oupengRemoteExec.unLockedScreen();
-//		oupengRemoteExec.stopRemoteService();
+		andToolsRemoteExec.wakeScreen();
+		andToolsRemoteExec.unLockedScreen();
+		andToolsRemoteExec.stopRemoteService();
+		solo.clickOnText("test");
 		solo.sleep(1000);
-//		oupengRemoteExec.takeScreenshot(solo.getCurrentActivity());
+		andToolsRemoteExec.takeScreenshot(solo.getCurrentActivity());
 
 		//		FileHelper.takeScreenshot(String.valueOf(SystemClock.uptimeMillis()), 
 		//				Environment.getExternalStorageDirectory().getAbsolutePath(), 1, inst);
 
-		Assert.fail("失败了");
+//		Assert.fail("失败了");
 		solo.sleep(2000);
 	}
 	
