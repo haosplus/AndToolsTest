@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -17,9 +18,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 
-@SuppressLint("NewApi")
 public class FileHelper {
-	
+	public final static String TAG = "andtools";
 	/**
 	 * 将流转换为字符串
 	 * @param inputStream
@@ -51,13 +51,39 @@ public class FileHelper {
 	 */
 	public static void takeScreenshot(String fileName, String directory,
 			int quality, Instrumentation inst) {
-		UiAutomation uiAutomation = inst.getUiAutomation();
-		Bitmap bitmap = uiAutomation.takeScreenshot();
+		Field mUiAutomation;
+		Class<?> uiAutomationClss;
+		Method takeScreenshot;
+		Object mUiAutomationVaule;
+		Bitmap bitmap = null;
+		try {
+			uiAutomationClss = Class.forName("android.app.UiAutomation");
+			mUiAutomation = Instrumentation.class.getDeclaredField("Instrumentation");
+			takeScreenshot = uiAutomationClss.getDeclaredMethod("takeScreenshot", new Class[]{});
+			if(mUiAutomation != null){
+				mUiAutomation.setAccessible(true);
+				mUiAutomationVaule = mUiAutomation.get(inst);
+				if(mUiAutomationVaule != null)
+					bitmap = (Bitmap) takeScreenshot.invoke(mUiAutomationVaule, new Object[]{});
+			}
+			Log.d(TAG, "bitmap: "+bitmap);
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+			Log.e(TAG, "Build.VERSION is :"+android.os.Build.VERSION.SDK_INT+", it should >= API 18");
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+//		UiAutomation uiAutomation = inst.getUiAutomation();
+//		Bitmap bitmap = uiAutomation.takeScreenshot();
 		FileOutputStream fos = null;
-//		File parentDirectory = new File(directory);
-//		if(!parentDirectory.exists())
-//			parentDirectory.mkdir();
-//		File fileToSave = new File(directory, fileName);
 		try {
 			fos = new FileOutputStream(directory+File.separator+fileName);
 			if(fileName.endsWith(".png")){
@@ -68,7 +94,7 @@ public class FileHelper {
 	     	fos.flush();
 		    fos.close();
 		} catch (Exception e) {
-			AutoToolsLog.i("Can't save the screenshot! Requires write permission (android.permission.WRITE_EXTERNAL_STORAGE) in AndroidManifest.xml of the application under test.");
+			Log.e(TAG, "Can't save the screenshot! Requires write permission (android.permission.WRITE_EXTERNAL_STORAGE) in AndroidManifest.xml of the application under test.");
 			e.printStackTrace();
 		}
 	}

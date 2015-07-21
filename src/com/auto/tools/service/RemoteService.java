@@ -128,5 +128,10 @@ public class RemoteService extends Service {
 			
 		}
 
+		@Override
+		public void saveFile(String path) throws RemoteException {
+			
+		}
+
 	}
 }

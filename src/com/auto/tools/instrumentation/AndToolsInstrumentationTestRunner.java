@@ -70,7 +70,7 @@ public class AndToolsInstrumentationTestRunner extends InstrumentationTestRunner
 	private void saveResultToXMl(TestResult testResult){
 		String reportFileFir;
 		if("".equals(AutoToolsConfig.reportFileFir)){
-			// 目前还美柚判断是否存在sd卡
+			// 目前还没有判断是否存在sd卡
 			reportFileFir = Environment.getExternalStorageDirectory().getAbsolutePath() + 
 					File.separator+"automation" + File.separator + getContext().getPackageName();
 		}else {

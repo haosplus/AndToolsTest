@@ -8,4 +8,5 @@ interface RemoteInterface{
 	String getNetworkInfo();
 	void setMobileDataEnabled(boolean flag);
 	void takeScreenshot();
+	void saveFile(String path);
 }
