@@ -41,7 +41,7 @@ public class FileHelper {
 		}
 		return strBuffer.toString();
 	}
-	
+
 	/**
 	 * 截图，包括输入法和状态栏,  如果被测应用有android.permission.WRITE_EXTERNAL_STORAGE权限且API>=18
 	 * @param fileName
@@ -51,38 +51,31 @@ public class FileHelper {
 	 */
 	public static void takeScreenshot(String fileName, String directory,
 			int quality, Instrumentation inst) {
-		Field mUiAutomation;
-		Class<?> uiAutomationClss;
 		Method takeScreenshot;
+		Method getUiAutomation;
 		Object mUiAutomationVaule;
 		Bitmap bitmap = null;
-		try {
-			uiAutomationClss = Class.forName("android.app.UiAutomation");
-			mUiAutomation = Instrumentation.class.getDeclaredField("Instrumentation");
-			takeScreenshot = uiAutomationClss.getDeclaredMethod("takeScreenshot", new Class[]{});
-			if(mUiAutomation != null){
-				mUiAutomation.setAccessible(true);
-				mUiAutomationVaule = mUiAutomation.get(inst);
-				if(mUiAutomationVaule != null)
-					bitmap = (Bitmap) takeScreenshot.invoke(mUiAutomationVaule, new Object[]{});
-			}
-			Log.d(TAG, "bitmap: "+bitmap);
-		} catch (NoSuchFieldException e) {
-			e.printStackTrace();
+		if(android.os.Build.VERSION.SDK_INT < 18){
 			Log.e(TAG, "Build.VERSION is :"+android.os.Build.VERSION.SDK_INT+", it should >= API 18");
+			return;
+		}
+		try {
+			getUiAutomation = Instrumentation.class.getDeclaredMethod("getUiAutomation");
+			mUiAutomationVaule = getUiAutomation.invoke(inst, new Object[]{});
+			takeScreenshot = mUiAutomationVaule.getClass().getDeclaredMethod("takeScreenshot", new Class[]{});
+			Log.i(TAG, "mUiAutomationVaule: "+mUiAutomationVaule);
+			if(mUiAutomationVaule != null)
+				bitmap = (Bitmap) takeScreenshot.invoke(mUiAutomationVaule, new Object[]{});
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
-//		UiAutomation uiAutomation = inst.getUiAutomation();
-//		Bitmap bitmap = uiAutomation.takeScreenshot();
+		Log.i(TAG, "bitmap: "+bitmap);
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(directory+File.separator+fileName);
@@ -91,15 +84,15 @@ public class FileHelper {
 			}else if(fileName.endsWith(".jpg")){
 				bitmap.compress(Bitmap.CompressFormat.JPEG, quality, fos);
 			}
-	     	fos.flush();
-		    fos.close();
+			fos.flush();
+			fos.close();
 		} catch (Exception e) {
 			Log.e(TAG, "Can't save the screenshot! Requires write permission (android.permission.WRITE_EXTERNAL_STORAGE) in AndroidManifest.xml of the application under test.");
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	/**
 	 * 根据文件名获取文件 
 	 * @param c
@@ -121,8 +114,8 @@ public class FileHelper {
 		}
 		return null;
 	}
-	
-	
+
+
 	/**
 	 * 取指定目录下的所有文件，但是不包括文件夹
 	 * @param c
@@ -143,7 +136,7 @@ public class FileHelper {
 		}
 		return fileList;
 	}
-	
+
 	public static void chmod(String filename, int permissions) {
 		Class<?> fileUtils = null;
 		try {
