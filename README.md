@@ -1,10 +1,6 @@
-一个Android测试工程，包含一些自动化的扩展；例如，报告输出、权限操作、界面管理和case执行等！
-
+扩展基于robotium的测试框架, 重写InstrumentationTestRunner实现报告输出、android aap形式管理和执行case，解决权限操作等问题；
 
 AndToolsTest：
-
-
-
 ## 配置： ##
 当需要针对自己的APK或者工程进行测试的时候，修改AndToolsTest工程中的AndroidManifest.xml
 
@@ -46,3 +42,5 @@ AndToolsTest：
 
 
 ```
+##  管理界面： ##
+![image](https://github.com/hao-shen/AndToolsTest/images/Screenshot_2016-11-28-19-49-17.png)
