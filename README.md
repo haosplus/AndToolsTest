@@ -15,16 +15,20 @@ AndToolsTest：
 
 ## 指定执行case ##
 编辑AndToolsTest工程assets目录下面的testcases.json文件：
-
 ```
 [
     {
         "class": "com.auto.test.SmokeMAutoTest",
         "testsuite": [
             {
-                "name": "testDemo",
-                "description": "测试示例",
+                "name": "testDemo1",
+                "description": "测试示例1",
                 "isrun": "false"
+            },
+            {
+                "name": "testDemo2",
+                "description": "测试示例2",
+                "isrun": "true"
             }
         ]
     },
@@ -40,6 +44,7 @@ AndToolsTest：
     }
 ]
 ```
+
 ## 报告输出（XML） ##
 ```
 <testsuite>
