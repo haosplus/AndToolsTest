@@ -39,8 +39,26 @@ AndToolsTest：
         ]
     }
 ]
-
-
+```
+## 报告输出（XML） ##
+```
+<testsuite>
+  <testcase classname="com.auto.test.SmokeAutoTest" name="testDebug" time="13.99">
+    <failure>
+Failure in testDebug:
+junit.framework.AssertionFailedError: Text string: 'test' is not found!
+        at com.robotium.solo.Clicker.clickOnText(Clicker.java:451)
+        at com.robotium.solo.Solo.clickOnText(Solo.java:1473)
+        at com.auto.test.SmokeAutoTest.testDebug(SmokeAutoTest.java:77)
+        at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:214)
+        at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:199)
+        at android.test.ActivityInstrumentationTestCase2.runTest(ActivityInstrumentationTestCase2.java:192)
+        at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:191)
+        at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:176)
+        at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:555)
+        at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:1944)
+</failure>
+  </testcase>
 ```
 ##  管理界面： ##
 ![image](https://github.com/hao-shen/AndToolsTest/blob/master/images/Screenshot_2016-11-28-19-49-17.png)
