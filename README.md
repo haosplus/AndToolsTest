@@ -43,4 +43,4 @@ AndToolsTest：
 
 ```
 ##  管理界面： ##
-![image](https://github.com/hao-shen/AndToolsTest/images/Screenshot_2016-11-28-19-49-17.png)
+![image](https://github.com/hao-shen/AndToolsTest/blob/master/images/Screenshot_2016-11-28-19-49-17.png)
