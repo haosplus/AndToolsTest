@@ -34,7 +34,7 @@ public class RemoteService extends Service {
 	private Intent intent;
 	@Override
 	public IBinder onBind(Intent intent) {
-		AutoToolsLog.d("onBind: "+this.getApplicationContext());
+		AutoToolsLog.i("onBind: "+this.getApplicationContext());
 		this.intent = intent;
 		return new RemoteBinder(this);
 	}
@@ -42,12 +42,12 @@ public class RemoteService extends Service {
 	
 	@Override
 	public void onDestroy() {
-		AutoToolsLog.d("onDestroy");
+		AutoToolsLog.i("onDestroy");
 		super.onDestroy();
 	}
 	
 
-	class RemoteBinder extends RemoteInterface.Stub{
+	private class RemoteBinder extends RemoteInterface.Stub{
 		private WifiManager wifiManager;
 		private KeyguardManager mKeyGuardManager;
 		private PowerManager powerManager;
@@ -56,12 +56,17 @@ public class RemoteService extends Service {
 		private NetworkInfo networkInfo;
 		RemoteBinder(Context context){
 //			this.context = context;
-			wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-			comConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+			wifiManager = (WifiManager) context.
+					getSystemService(Context.WIFI_SERVICE);
+			comConnectivityManager = (ConnectivityManager) context.
+					getSystemService(Context.CONNECTIVITY_SERVICE);
 			networkInfo = comConnectivityManager.getActiveNetworkInfo();
-			mKeyGuardManager = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
-			powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-			wakeLock = powerManager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "OupengAutoTest");
+			mKeyGuardManager = (KeyguardManager) context.
+					getSystemService(Context.KEYGUARD_SERVICE);
+			powerManager = (PowerManager) context.
+					getSystemService(Context.POWER_SERVICE);
+			wakeLock = powerManager.newWakeLock
+					(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "OupengAutoTest");
 		}
 
 		@Override
@@ -79,18 +84,16 @@ public class RemoteService extends Service {
 
 		@Override
 		public void lockedScreen() throws RemoteException {
-			AutoToolsLog.d("远程调用lockedScreen()");
+			AutoToolsLog.d("lockedScreen()");
 		}
 
 		@Override
 		public void unLockedScreen() throws RemoteException {
-			AutoToolsLog.d("远程调用解锁");
 			mKeyGuardManager.newKeyguardLock("").disableKeyguard();
 		}
 
 		@Override
 		public String getNetworkInfo() throws RemoteException {
-			AutoToolsLog.d("获取网络状态");
 			if(networkInfo == null)
 				return "NOTCONNECTED";
 			return networkInfo.getTypeName();
@@ -131,6 +134,11 @@ public class RemoteService extends Service {
 		@Override
 		public void saveFile(String path) throws RemoteException {
 			
+		}
+
+		@Override
+		public void setWifiEnabled(boolean flag) throws RemoteException {
+			wifiManager.setWifiEnabled(flag);
 		}
 
 	}

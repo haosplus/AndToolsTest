@@ -7,6 +7,7 @@ interface RemoteInterface{
 	void releaseWakeScreen();
 	String getNetworkInfo();
 	void setMobileDataEnabled(boolean flag);
+	void setWifiEnabled(boolean flag);
 	void takeScreenshot();
 	void saveFile(String path);
 }

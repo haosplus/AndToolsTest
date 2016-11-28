@@ -17,6 +17,7 @@ import android.app.UiAutomation;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
+import android.view.View;
 
 public class FileHelper {
 	public final static String TAG = "andtools";
@@ -63,7 +64,6 @@ public class FileHelper {
 			getUiAutomation = Instrumentation.class.getDeclaredMethod("getUiAutomation");
 			mUiAutomationVaule = getUiAutomation.invoke(inst, new Object[]{});
 			takeScreenshot = mUiAutomationVaule.getClass().getDeclaredMethod("takeScreenshot", new Class[]{});
-			Log.i(TAG, "mUiAutomationVaule: "+mUiAutomationVaule);
 			if(mUiAutomationVaule != null)
 				bitmap = (Bitmap) takeScreenshot.invoke(mUiAutomationVaule, new Object[]{});
 		} catch (IllegalArgumentException e) {
@@ -75,8 +75,29 @@ public class FileHelper {
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
-		Log.i(TAG, "bitmap: "+bitmap);
 		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(directory+File.separator+fileName);
+			if(fileName.endsWith(".png")){
+				bitmap.compress(Bitmap.CompressFormat.PNG, quality, fos);
+			}else if(fileName.endsWith(".jpg")){
+				bitmap.compress(Bitmap.CompressFormat.JPEG, quality, fos);
+			}
+			fos.flush();
+			fos.close();
+		} catch (Exception e) {
+			Log.e(TAG, "Can't save the screenshot! Requires write permission (android.permission.WRITE_EXTERNAL_STORAGE) in AndroidManifest.xml of the application under test.");
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public static void takeScreenshot(String fileName, String directory,
+			View view, int quality) {
+		Bitmap bitmap = null;
+		FileOutputStream fos = null;
+		view.buildDrawingCache(false);
+		bitmap = view.getDrawingCache();
 		try {
 			fos = new FileOutputStream(directory+File.separator+fileName);
 			if(fileName.endsWith(".png")){
@@ -129,7 +150,7 @@ public class FileHelper {
 			File[] files = file.listFiles();
 			for (File f : files) {
 				if (f.isFile())
-					AutoToolsLog.d("fileName: " + f.getName()
+					AutoToolsLog.i("fileName: " + f.getName()
 							+ "  size: " + f.length());
 				fileList.add(f);
 			}

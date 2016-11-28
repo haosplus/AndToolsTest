@@ -1,6 +1,8 @@
 package com.auto.tools.service;
 
 import java.io.ByteArrayOutputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import android.app.Activity;
 import android.app.Instrumentation;
@@ -13,6 +15,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 
 import com.auto.tools.aidl.RemoteInterface;
@@ -20,7 +23,13 @@ import com.auto.tools.utils.AutoToolsLog;
 import com.auto.tools.utils.AutoToolsConfig;
 import com.robotium.solo.Condition;
 
+/**
+ * 
+ * @author haos
+ *
+ */
 public class AndToolsRemoteExec {
+	public final static String TAG = "andtools";
 	private Instrumentation inst;
 	//	private String serviceAction = "oupeng.auto.remoteService";
 	private RemoteInterface remoteInterface;
@@ -58,10 +67,10 @@ public class AndToolsRemoteExec {
 	 * @return
 	 */
 	private RemoteInterface getRemoteInterface(){
-		AutoToolsLog.d("==Obtain remote nterface==");
-		if(remoteInterface != null)
+		if(remoteInterface != null){
+			AutoToolsLog.i("Obtain remote interface");
 			return remoteInterface;
-
+		}
 		intentService.setClass(inst.getContext(), RemoteService.class);
 		remoteServiceConnection = new RemoteServiceConnection();
 
@@ -185,17 +194,53 @@ public class AndToolsRemoteExec {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 设置wifi是否可用
+	 * @param flag
+	 */
+	public void setWifiEnabled(boolean flag){
+		try {
+			getRemoteInterface().setWifiEnabled(flag);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * 截图操作，被测应用不存在<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />调用此远程截图方法
-	 * @param activity
+	 * @param activity, 如果api>=18，可以为null
 	 */
 	public void takeScreenshot(Activity currentActivity){
 		if(remoteInterface != null)
 			stopRemoteService();
-		View view  = currentActivity.getWindow().getDecorView();
-		view.buildDrawingCache(false);
-		Bitmap bitmap = view.getDrawingCache();
+		
+		Bitmap bitmap = null;
+		if(android.os.Build.VERSION.SDK_INT < 18){
+			View view  = currentActivity.getWindow().getDecorView();
+			view.buildDrawingCache(false);
+			bitmap = view.getDrawingCache();
+		}else {
+			Method takeScreenshot;
+			Method getUiAutomation;
+			Object mUiAutomationVaule;
+			try {
+				getUiAutomation = Instrumentation.class.getDeclaredMethod("getUiAutomation");
+				mUiAutomationVaule = getUiAutomation.invoke(inst, new Object[]{});
+				takeScreenshot = mUiAutomationVaule.getClass().getDeclaredMethod("takeScreenshot", new Class[]{});
+				if(mUiAutomationVaule != null)
+					bitmap = (Bitmap) takeScreenshot.invoke(mUiAutomationVaule, new Object[]{});
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		Bundle b = new Bundle();
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);

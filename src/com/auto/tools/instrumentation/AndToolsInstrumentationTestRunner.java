@@ -16,6 +16,11 @@ import android.util.Xml;
 import com.auto.tools.utils.AutoToolsLog;
 import com.auto.tools.utils.AutoToolsConfig;
 
+/**
+ * 
+ * @author haos
+ *
+ */
 public class AndToolsInstrumentationTestRunner extends InstrumentationTestRunner {
 	
 	private Bundle arguments;

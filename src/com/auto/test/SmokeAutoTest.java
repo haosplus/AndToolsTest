@@ -67,14 +67,21 @@ public class SmokeAutoTest extends ActivityInstrumentationTestCase2 {
 	public void testDebug(){
 		andToolsRemoteExec.wakeScreen();
 		andToolsRemoteExec.unLockedScreen();
-		andToolsRemoteExec.stopRemoteService();
-		solo.clickOnText("test");
+//		solo.clickOnText("test");
 		solo.sleep(1000);
+//		andToolsRemoteExec.setWifiEnabled(true);
+		solo.sleep(2000);
 		andToolsRemoteExec.takeScreenshot(solo.getCurrentActivity());
 
-		Log.i(TAG, "takeScreenshot");
-		FileHelper.takeScreenshot(String.valueOf(SystemClock.uptimeMillis())+".png", 
-				Environment.getExternalStorageDirectory().getAbsolutePath(), 1, inst);
+		solo.clickOnText("test");
+		solo.sleep(2000);
+		
+//		FileHelper.takeScreenshot(String.valueOf(SystemClock.uptimeMillis())+".png", 
+//				Environment.getExternalStorageDirectory().getAbsolutePath(), solo.getView("webView"), 1);
+				
+//		Log.i(TAG, "takeScreenshot");
+//		FileHelper.takeScreenshot(String.valueOf(SystemClock.uptimeMillis())+".png", 
+//				Environment.getExternalStorageDirectory().getAbsolutePath(), 1, inst);
 
 //		Assert.fail("失败了");
 		solo.sleep(2000);

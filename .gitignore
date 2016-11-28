@@ -1,5 +1,7 @@
 *.class
 *.apk
-bin/
-gen/
-local.properties
+bin
+gen
+.project
+.classpath
+.settings

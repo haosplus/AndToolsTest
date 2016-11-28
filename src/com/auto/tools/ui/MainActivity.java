@@ -9,7 +9,11 @@ import android.view.KeyEvent;
 import android.widget.TabHost;
 import android.widget.Toast;
 
-
+/**
+ * 
+ * @author haos
+ *
+ */
 public class MainActivity extends TabActivity {
 	private long exitTime = 0;
 	private Intent intent;

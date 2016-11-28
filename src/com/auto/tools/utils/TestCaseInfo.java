@@ -1,5 +1,10 @@
 package com.auto.tools.utils;
 
+/**
+ * 
+ * @author haos
+ *
+ */
 public class TestCaseInfo {
 	private String name;
 	private String description;

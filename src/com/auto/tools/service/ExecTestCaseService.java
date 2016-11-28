@@ -12,11 +12,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.InstrumentationInfo;
 import android.os.IBinder;
+import android.util.Log;
 
 import com.auto.andtools.R;
 import com.auto.tools.utils.FileHelper;
 import com.auto.tools.utils.AutoToolsLog;
 
+/**
+ * 
+ * @author haos
+ *
+ */
 @SuppressLint("NewApi")
 public class ExecTestCaseService extends Service {
 	public static final String CASENAME = "casename";

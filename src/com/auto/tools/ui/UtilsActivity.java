@@ -13,6 +13,11 @@ import android.util.Log;
 import com.auto.andtools.R;
 import com.auto.tools.utils.SystemInfo;
 
+/**
+ * 
+ * @author haos
+ *
+ */
 public class UtilsActivity extends Activity {
 	private String TAG = "UtilsActivity";
 	@Override
@@ -26,12 +31,9 @@ public class UtilsActivity extends Activity {
 		for(int pid : lastPids){
 			if(pid <= 0)
 				continue;
-			
 			int uid = systemInfo.getUidForPid(pid);
-			
 			String name = systemInfo.getUidName(uid, getPackageManager());
 			Log.i(TAG, "name: "+name+"  pid: "+pid+"  uid: "+uid);
-			
 			
 		}
 		

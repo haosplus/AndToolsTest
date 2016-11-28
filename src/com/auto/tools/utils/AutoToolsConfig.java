@@ -16,7 +16,7 @@ public class AutoToolsConfig {
 	 */
 	public static boolean logStatus = true;
 	
-	public static String logFliterTag = "debug";
+	public static String logFliterTag = "andtools";
 	
 	public static String frameworkLogTag = "andtools";
 	

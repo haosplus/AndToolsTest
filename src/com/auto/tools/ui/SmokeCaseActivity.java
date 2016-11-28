@@ -29,6 +29,11 @@ import com.auto.tools.service.ExecTestCaseService;
 import com.auto.tools.utils.FileHelper;
 import com.auto.tools.utils.TestCaseInfo;
 
+/**
+ * 
+ * @author haos
+ *
+ */
 public class SmokeCaseActivity extends Activity implements OnChildClickListener{
 	private TestCaseInfo testCaseInfo;
 	//	private SmokeCaseAdapter smokeCaseAdapter;
@@ -83,7 +88,8 @@ public class SmokeCaseActivity extends Activity implements OnChildClickListener{
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		ExpandableListView.ExpandableListContextMenuInfo menuInfo = (ExpandableListContextMenuInfo) item.getMenuInfo();
+		ExpandableListView.ExpandableListContextMenuInfo menuInfo = 
+				(ExpandableListContextMenuInfo) item.getMenuInfo();
 		long packedPosition = menuInfo.packedPosition;
 		int positionGroup = ExpandableListView.getPackedPositionGroup(packedPosition);
 
