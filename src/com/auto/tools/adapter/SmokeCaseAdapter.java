@@ -15,7 +15,9 @@ import android.widget.TextView;
 
 import com.auto.andtools.R;
 import com.auto.tools.utils.TestCaseInfo;
-
+/**
+ * @author haos
+ */
 public class SmokeCaseAdapter extends BaseAdapter{
 	private ArrayList<TestCaseInfo> list;
 	private LayoutInflater layoutInflater;

@@ -26,7 +26,6 @@ import com.robotium.solo.Condition;
 /**
  * 
  * @author haos
- *
  */
 public class AndToolsRemoteExec {
 	public final static String TAG = "andtools";

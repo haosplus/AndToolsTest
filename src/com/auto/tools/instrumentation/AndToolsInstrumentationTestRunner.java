@@ -11,15 +11,14 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.SystemClock;
 import android.test.InstrumentationTestRunner;
+import android.util.Log;
 import android.util.Xml;
 
 import com.auto.tools.utils.AutoToolsLog;
 import com.auto.tools.utils.AutoToolsConfig;
 
 /**
- * 
  * @author haos
- *
  */
 public class AndToolsInstrumentationTestRunner extends InstrumentationTestRunner {
 	
@@ -69,7 +68,7 @@ public class AndToolsInstrumentationTestRunner extends InstrumentationTestRunner
 	}
 	
 	/**
-	 * 将结果保存到xml文件中,需要被测进程开启权限，修改成远程调用方式保存？
+	 * 将结果保存到xml文件中,需要被测进程开启权限； 此处可以修改成通过AIDL远程调用方式保存测试报告
 	 * @param testResult
 	 */
 	private void saveResultToXMl(TestResult testResult){
@@ -134,6 +133,14 @@ public class AndToolsInstrumentationTestRunner extends InstrumentationTestRunner
 	 * @param testResult
 	 */
 	private void saveResultToHtml(TestResult testResult){
+		
+	}
+	
+	/**
+	 * 将结果发送到网络服务器
+	 * @param testResult
+	 */
+	private void sendResultToService(TestResult testResult){
 		
 	}
 	

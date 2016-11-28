@@ -11,13 +11,6 @@
         android:label="AndToolsTest"
         android:targetPackage="com.example.android.actionbarcompat" />
 
-    <!--
-                 <instrumentation
-        android:name="android.test.InstrumentationTestRunner"
-        android:label="QunimeiTest"
-        android:targetPackage="com.nbapp.qunimei" />
-    -->
-
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

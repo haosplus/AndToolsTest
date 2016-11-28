@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/select_all"
+        android:showAsAction="ifRoom"
+        android:title="@string/select_all"/>
+    
+        <item
+        android:id="@+id/cancel_select_all"
+        android:showAsAction="ifRoom"
+        android:title="@string/cancel_select"/>
+        
+        <item
+        android:id="@+id/run_select_case"
+        android:showAsAction="ifRoom"
+        android:title="@string/run_select"/>
+
+</menu>

@@ -6,6 +6,7 @@ import android.os.Environment;
 import android.os.SystemClock;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
+import junit.framework.Assert;
 
 import com.auto.tools.service.AndToolsRemoteExec;
 import com.auto.tools.utils.FileHelper;
@@ -65,13 +66,13 @@ public class SmokeAutoTest extends ActivityInstrumentationTestCase2 {
 	 *@date 2015/4/13
 	 */
 	public void testDebug(){
-		andToolsRemoteExec.wakeScreen();
-		andToolsRemoteExec.unLockedScreen();
+//		andToolsRemoteExec.wakeScreen();
+//		andToolsRemoteExec.unLockedScreen();
 //		solo.clickOnText("test");
-		solo.sleep(1000);
+//		solo.sleep(1000);
 //		andToolsRemoteExec.setWifiEnabled(true);
-		solo.sleep(2000);
-		andToolsRemoteExec.takeScreenshot(solo.getCurrentActivity());
+//		solo.sleep(2000);
+//		andToolsRemoteExec.takeScreenshot(solo.getCurrentActivity());
 
 		solo.clickOnText("test");
 		solo.sleep(2000);
@@ -84,7 +85,7 @@ public class SmokeAutoTest extends ActivityInstrumentationTestCase2 {
 //				Environment.getExternalStorageDirectory().getAbsolutePath(), 1, inst);
 
 //		Assert.fail("失败了");
-		solo.sleep(2000);
+//		solo.sleep(2000);
 	}
 	
 	
